@@ -1,6 +1,7 @@
 package com.ClanKickProtector;
 
 import com.google.inject.Provides;
+import java.util.Arrays;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
@@ -11,6 +12,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.util.Text;
 
 @Slf4j
 @PluginDescriptor(
@@ -53,26 +55,18 @@ public class ClanKickProtectorPlugin extends Plugin
             return;
         }
 
+        // Get entries from the event instead of the deprecated client.getMenuEntries()
         MenuEntry[] entries = event.getMenuEntries();
-        boolean hasKickOption = false;
 
-        for (MenuEntry entry : entries)
+        // Filter out any menu options containing "kick"
+        MenuEntry[] filteredEntries = Arrays.stream(entries)
+            .filter(entry -> !isKickOption(entry.getOption()))
+            .toArray(MenuEntry[]::new);
+
+        // Apply filtered entries back to client menu
+        if (filteredEntries.length != entries.length)
         {
-            if (isKickOption(entry.getOption()))
-            {
-                hasKickOption = true;
-                break;
-            }
-        }
-
-        // Filter out any menu option containing "Kick"
-        if (hasKickOption)
-        {
-            MenuEntry[] filteredEntries = java.util.Arrays.stream(entries)
-                .filter(entry -> !isKickOption(entry.getOption()))
-                .toArray(MenuEntry[]::new);
-
-            event.setMenuEntries(filteredEntries);
+            client.getMenu().setMenuEntries(filteredEntries);
         }
     }
 
@@ -82,7 +76,9 @@ public class ClanKickProtectorPlugin extends Plugin
         {
             return false;
         }
-        String cleanOption = option.toLowerCase();
-        return cleanOption.equals("kick") || cleanOption.contains("kick");
+        
+        // Strip color tags (e.g. "<col=ff0000>Kick</col>" -> "kick")
+        String cleanOption = Text.removeTags(option).trim().toLowerCase();
+        return cleanOption.contains("kick");
     }
 }

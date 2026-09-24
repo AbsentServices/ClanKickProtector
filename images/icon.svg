@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Padlock Shackle -->
+  <path d="M10 14 V9 A6 6 0 0 1 22 9 V14" fill="none" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Padlock Body (OSRS Bronze/Iron Texture) -->
+  <rect x="6" y="13" width="20" height="16" rx="3" fill="#4A3B32" stroke="#FFD700" stroke-width="1.5"/>
+  
+  <!-- Kicking Boot (Crossed Out / Protected) -->
+  <path d="M10 18 H14 L17 22 H21 V24 H10 Z" fill="#8B4513" stroke="#1A1A1A" stroke-width="1"/>
+  
+  <!-- Red "No Kick" Diagonal Barrier -->
+  <line x1="8" y1="26" x2="24" y2="16" stroke="#FF3333" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
