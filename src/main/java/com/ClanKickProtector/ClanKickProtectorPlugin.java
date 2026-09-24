@@ -1,4 +1,4 @@
-package com.clankickprotector;
+package com.ClanKickProtector;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -72,7 +72,7 @@ public class ClanKickProtectorPlugin extends Plugin
                 .filter(entry -> !isKickOption(entry.getOption()))
                 .toArray(MenuEntry[]::new);
 
-            client.setMenuEntries(filteredEntries);
+            event.setMenuEntries(filteredEntries);
         }
     }
 
