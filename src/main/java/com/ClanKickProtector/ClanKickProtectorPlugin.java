@@ -1,4 +1,4 @@
-package com.ClanKickProtector;
+package com.clankickprotector;
 
 import com.google.inject.Provides;
 import java.util.Arrays;
