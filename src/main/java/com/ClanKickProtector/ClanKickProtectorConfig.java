@@ -1,4 +1,4 @@
-package com.ClanKickProtector;
+package com.clankickprotector;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
