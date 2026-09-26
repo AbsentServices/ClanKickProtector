@@ -20,6 +20,7 @@ import net.runelite.client.util.Text;
     description = "Stops you from accidentally kicking anyone from your Friends Chat.",
     tags = {"clan", "chat", "friends", "kick", "protector", "fc"}
 )
+
 public class ClanKickProtectorPlugin extends Plugin
 {
     @Inject
